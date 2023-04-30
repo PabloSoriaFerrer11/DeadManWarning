@@ -40,6 +40,9 @@ public class HomeFragment extends Fragment implements GetHomeState {
                 if(mSwitch.isChecked()){
                     classCheckState = new CheckState(view.getContext());
                     classCheckState.execute(true);
+                }else{
+                    if(classCheckState != null)
+                        classCheckState.cancel(true);
                 }
 
 

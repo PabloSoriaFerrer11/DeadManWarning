@@ -5,6 +5,8 @@ import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.AsyncTask;
 
+import java.text.DecimalFormat;
+
 
 public class CheckState extends AsyncTask<Boolean, Void, Void> {
     private boolean checked;
@@ -32,7 +34,7 @@ public class CheckState extends AsyncTask<Boolean, Void, Void> {
                     throw new Exception("El sensor no esta en este dispostivo");
                 }
 
-                Thread.sleep(2000); // espera por dos segundos
+                Thread.sleep(4000); // espera por cuatro segundos
 
                 giroscopio.debugArrayData();
 
