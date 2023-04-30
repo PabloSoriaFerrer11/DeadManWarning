@@ -33,16 +33,20 @@ public class HomeFragment extends Fragment implements GetHomeState {
 
         mSwitch = binding.CheckState;
 
+
         binding.CheckState.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mSwitch = binding.getRoot().findViewById(R.id.CheckState);
-                isCheckBoxChecked();
+                if(mSwitch.isChecked()){
+                    classCheckState = new CheckState(view.getContext());
+                    classCheckState.execute(true);
+                }
+
+
+
+
             }
         });
-
-        classCheckState = new CheckState();
-        classCheckState.execute();
 
         return rootView;
     }
@@ -51,21 +55,19 @@ public class HomeFragment extends Fragment implements GetHomeState {
     public void onDestroyView() {
         super.onDestroyView();
 
-        if(mSwitch.isChecked())
+        if(mSwitch.isChecked()){
             mSwitch.setChecked(false);
+            classCheckState.cancel(true);
+        }
 
-        /*binding = null;
-        rootView = null;*/
+
+        binding = null;
+        rootView = null;
     }
+
 
     @Override
     public boolean isCheckBoxChecked() {
-
-        mSwitch = rootView.findViewById(R.id.CheckState);
-
-        if (mSwitch != null && mSwitch.isChecked())
-            return true;
-        else
-            return false;
+        return false;
     }
 }

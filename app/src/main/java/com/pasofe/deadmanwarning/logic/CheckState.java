@@ -1,30 +1,46 @@
 package com.pasofe.deadmanwarning.logic;
 
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.AsyncTask;
 
-import com.pasofe.deadmanwarning.interfaces.GetHomeState;
-import com.pasofe.deadmanwarning.ui.home.HomeFragment;
 
-public class CheckState extends AsyncTask<Void, Void, String> {
+public class CheckState extends AsyncTask<Boolean, Void, Void> {
     private boolean checked;
-    private GetHomeState HomeInterface;
-    private HomeFragment FragmentHome;
+    private SensorManager sensor;
+    private Context mContext;
+    private Sensor gyroSensor;
+    private GyroscopeListener giroscopio;
+
+    public CheckState(Context context){
+        this.mContext = context;
+    }
 
     @Override
-    protected String doInBackground(Void... voids) {
-        FragmentHome  = new HomeFragment();
+    protected Void doInBackground(Boolean... arrayState) {
+        checked = arrayState[0];
+        sensor = (SensorManager) mContext.getSystemService(mContext.SENSOR_SERVICE);
+        gyroSensor = sensor.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+        giroscopio = new GyroscopeListener();
 
         try {
-            do {
-                checked = FragmentHome.isCheckBoxChecked();
+            sensor.registerListener(giroscopio, gyroSensor,SensorManager.SENSOR_DELAY_NORMAL);
 
-                System.out.println("\n Esto es una prueba" + checked);
+            do {
+                if (gyroSensor == null) {
+                    throw new Exception("El sensor no esta en este dispostivo");
+                }
+
+                Thread.sleep(2000); // espera por dos segundos
+
+                giroscopio.debugArrayData();
 
             }while (checked);
 
         }catch (Exception E){
+            System.out.println("Error en doInBackground");
             E.printStackTrace();
-            System.err.println("\n EY");
         }finally {
             return null;
         }
