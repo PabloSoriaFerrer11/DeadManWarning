@@ -29,7 +29,7 @@ public class GyroscopeListener implements SensorEventListener {
                 arrayListX.add(sensorEvent.values[0]);
             }
 
-            if(arrayListX.size()>15)
+            if(arrayListX.size()>150)
                     arrayListX.remove(0);
 
 
@@ -42,8 +42,7 @@ public class GyroscopeListener implements SensorEventListener {
                 arrayListY.add(sensorEvent.values[1]);
             }
 
-
-            if(arrayListY.size()>15)
+            if(arrayListY.size()>150)
                 arrayListY.remove(0);
 
 
@@ -56,8 +55,7 @@ public class GyroscopeListener implements SensorEventListener {
                 arrayListZ.add(sensorEvent.values[2]);
             }
 
-
-            if(arrayListZ.size()>15)
+            if(arrayListZ.size()>150)
                 arrayListZ.remove(0);
 
         }catch (Exception E){
@@ -90,4 +88,37 @@ public class GyroscopeListener implements SensorEventListener {
         System.out.println("------------------------------------------------");
         System.out.println("\n");
     }
+
+    public float userStateInX() {
+
+        float AVGX = 0, AuxX = 0;
+        for (int i = 0; i < arrayListX.size(); i++) {
+            AuxX += arrayListX.get(i);
+        }
+        AVGX = (float) AuxX / arrayListX.size();
+        return  AVGX;
+    }
+
+    public float userStateInY() {
+        float AVGY = 0, AuxY=0;
+        for (int i = 0;  i<arrayListY.size(); i++){
+            AuxY += arrayListY.get(i);
+        }
+        AVGY = (float) AuxY / arrayListY.size();
+        return  AVGY;
+    }
+
+    public float userStateInZ() {
+        float AVGZ = 0, AuxZ=0;
+        for (int i = 0;  i<arrayListZ.size(); i++){
+            AuxZ += arrayListZ.get(i);
+        }
+        AVGZ = (float) AuxZ / arrayListZ.size();
+        return  AVGZ;
+    }
+
+
+
+
+
 }

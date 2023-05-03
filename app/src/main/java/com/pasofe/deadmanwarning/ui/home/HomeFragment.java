@@ -15,7 +15,7 @@ import com.pasofe.deadmanwarning.databinding.FragmentHomeBinding;
 import com.pasofe.deadmanwarning.interfaces.GetHomeState;
 import com.pasofe.deadmanwarning.logic.CheckState;
 
-public class HomeFragment extends Fragment implements GetHomeState {
+public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private Switch mSwitch;
@@ -37,6 +37,7 @@ public class HomeFragment extends Fragment implements GetHomeState {
         binding.CheckState.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if(mSwitch.isChecked()){
                     classCheckState = new CheckState(view.getContext());
                     classCheckState.execute(true);
@@ -44,9 +45,6 @@ public class HomeFragment extends Fragment implements GetHomeState {
                     if(classCheckState != null)
                         classCheckState.cancel(true);
                 }
-
-
-
 
             }
         });
@@ -69,8 +67,4 @@ public class HomeFragment extends Fragment implements GetHomeState {
     }
 
 
-    @Override
-    public boolean isCheckBoxChecked() {
-        return false;
-    }
 }
