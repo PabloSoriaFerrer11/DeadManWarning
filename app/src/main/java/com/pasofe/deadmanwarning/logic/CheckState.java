@@ -1,10 +1,15 @@
 package com.pasofe.deadmanwarning.logic;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.AsyncTask;
 import android.widget.Toast;
+
+import com.pasofe.deadmanwarning.MainActivity;
+import com.pasofe.deadmanwarning.WarningActivity;
 
 import java.text.DecimalFormat;
 import java.text.Normalizer;
@@ -92,8 +97,9 @@ public class CheckState extends AsyncTask<Boolean, Void, Void> {
     protected void onPostExecute(Void result) {
         super.onPostExecute(result);
         if(contadorVeces == 12){
-            Toast.makeText(mContext.getApplicationContext(), "Se ha envido un aviss",Toast.LENGTH_LONG).show();
-            System.out.println("Llamando");
+            Toast.makeText(mContext.getApplicationContext(), "Se ha envido un aviso",Toast.LENGTH_LONG).show();
+            Intent intento = new Intent(mContext.getApplicationContext(), WarningActivity.class);
+            mContext.startActivity(intento);
         }
 
     }
