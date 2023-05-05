@@ -1,7 +1,9 @@
 package com.pasofe.deadmanwarning.ui.home;
 
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +16,16 @@ import com.pasofe.deadmanwarning.R;
 import com.pasofe.deadmanwarning.databinding.FragmentHomeBinding;
 import com.pasofe.deadmanwarning.interfaces.GetHomeState;
 import com.pasofe.deadmanwarning.logic.CheckState;
+import com.pasofe.deadmanwarning.logic.DataManager;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private Switch mSwitch;
     private CheckState classCheckState;
+
+    private DataManager dm;
+    private SQLiteDatabase appdb;
 
     private View rootView;
 
@@ -32,6 +38,9 @@ public class HomeFragment extends Fragment {
         rootView = binding.getRoot();
 
         mSwitch = binding.CheckState;
+
+        dm = new DataManager(rootView.getContext());
+
 
 
         binding.CheckState.setOnClickListener(new View.OnClickListener() {

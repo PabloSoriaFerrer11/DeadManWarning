@@ -4,4 +4,5 @@
     <string name="title_dashboard">Contactos</string>
     <string name="monitorizar">Monitorizar:</string>
     <string name="AvisoLlamada">No se ha detectado movimiento. Avisando a contactos agregados</string>
+    <string name="PantallaInicio">Dead Man Warning</string>
 </resources>

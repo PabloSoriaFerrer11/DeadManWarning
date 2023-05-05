@@ -29,7 +29,7 @@ public class GyroscopeListener implements SensorEventListener {
                 arrayListX.add(sensorEvent.values[0]);
             }
 
-            if(arrayListX.size()>150)
+            if(arrayListX.size()>300)
                     arrayListX.remove(0);
 
 
@@ -42,7 +42,7 @@ public class GyroscopeListener implements SensorEventListener {
                 arrayListY.add(sensorEvent.values[1]);
             }
 
-            if(arrayListY.size()>150)
+            if(arrayListY.size()>300)
                 arrayListY.remove(0);
 
 
@@ -55,7 +55,7 @@ public class GyroscopeListener implements SensorEventListener {
                 arrayListZ.add(sensorEvent.values[2]);
             }
 
-            if(arrayListZ.size()>150)
+            if(arrayListZ.size()>300)
                 arrayListZ.remove(0);
 
         }catch (Exception E){
